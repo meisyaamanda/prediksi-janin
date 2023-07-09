@@ -21,6 +21,10 @@ class _SignUpState extends State<SignUp> {
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: whiteColor,
+        elevation: 0,
+      ),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Padding(

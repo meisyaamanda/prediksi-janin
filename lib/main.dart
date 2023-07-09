@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:janin/provider/auth.dart';
+import 'package:janin/view/signin/kodeotp.dart';
+import 'package:janin/view/signin/konfirmasi.dart';
 import 'package:janin/view/signin/wrapper.dart';
 import 'package:janin/view/splashscreen.dart';
 import 'package:provider/provider.dart';
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: Wrapper(),
+        home: KonfirmasiPassword(),
       ),
     );
   }

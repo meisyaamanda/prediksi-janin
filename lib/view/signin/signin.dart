@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:janin/provider/auth.dart';
 import 'package:janin/theme.dart';
+import 'package:janin/view/signin/lupasandi.dart';
 import 'package:janin/view/signup.dart';
 import 'package:provider/provider.dart';
 
@@ -21,6 +22,10 @@ class _SignInState extends State<SignIn> {
   Widget build(BuildContext context) {
     Auth auth = Provider.of<Auth>(context, listen: false);
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: whiteColor,
+        elevation: 0,
+      ),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Padding(
@@ -73,7 +78,7 @@ class _SignInState extends State<SignIn> {
                       'Email / Nomor HP',
                       style: labelText,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     TextFormField(
@@ -108,15 +113,19 @@ class _SignInState extends State<SignIn> {
                     ),
                     TextFormField(
                       controller: passwordController,
+                      textInputAction: TextInputAction.done,
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: BorderSide(color: blackColor, width: 1)
-                        ),
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide:
+                                BorderSide(color: blackColor, width: 1)),
                         hintText: 'Masukkan Kata Sandi',
                         hintStyle: greyTextStyle.copyWith(fontSize: 14),
-                        suffixIcon: Icon(Icons.visibility_off),
+                        suffixIcon: Icon(
+                          Icons.visibility_off,
+                        ),
                       ),
+                      obscureText: true,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Password tidak boleh kosong';
@@ -127,7 +136,7 @@ class _SignInState extends State<SignIn> {
                   ],
                 ),
               ),
-
+          
               const SizedBox(
                 height: 5,
               ),
@@ -135,7 +144,14 @@ class _SignInState extends State<SignIn> {
               Container(
                 alignment: Alignment.bottomRight,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LupaSandi(),
+                      ),
+                    );
+                  },
                   child: Text(
                     'Lupa Kata Sandi?',
                     style: labelText,
@@ -155,7 +171,7 @@ class _SignInState extends State<SignIn> {
                       backgroundColor: pinkColor,
                     ),
                     onPressed: () async {
-                      if (_formKey.currentState!.validate());
+                      if (_formKey.currentState!.validate()) ;
                       auth.SignInProvider(
                         emailController.text,
                         passwordController.text,
