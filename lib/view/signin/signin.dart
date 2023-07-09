@@ -45,8 +45,9 @@ class _SignInState extends State<SignIn> {
                 child: Text(
                   'Masuk dengan akun yang kamu miliki',
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 20,
                   ),
+                  textAlign: TextAlign.center,
                 ),
               ),
               const SizedBox(
@@ -81,8 +82,8 @@ class _SignInState extends State<SignIn> {
                       controller: emailController,
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(),
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide(color: blackColor, width: 1),
                         ),
                         hintText: 'Masukkan Email / Nomor HP',
                         hintStyle: greyTextStyle.copyWith(fontSize: 14),
@@ -109,8 +110,8 @@ class _SignInState extends State<SignIn> {
                       controller: passwordController,
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(),
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide(color: blackColor, width: 1)
                         ),
                         hintText: 'Masukkan Kata Sandi',
                         hintStyle: greyTextStyle.copyWith(fontSize: 14),
@@ -147,13 +148,14 @@ class _SignInState extends State<SignIn> {
                   width: 277,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
+                      side: BorderSide(color: blackColor, width: 1),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                       backgroundColor: pinkColor,
                     ),
                     onPressed: () async {
-                      if (_formKey.currentState!.validate()) ;
+                      if (_formKey.currentState!.validate());
                       auth.SignInProvider(
                         emailController.text,
                         passwordController.text,
@@ -173,6 +175,7 @@ class _SignInState extends State<SignIn> {
                   width: 204,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
+                      side: BorderSide(color: blackColor, width: 1),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -189,7 +192,7 @@ class _SignInState extends State<SignIn> {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

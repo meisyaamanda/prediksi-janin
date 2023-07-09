@@ -49,6 +49,26 @@ class Auth with ChangeNotifier {
         showTextMessage(context, 'Kata sandi yang anda masukan salah');
       }
     }
+    notifyListeners();
+  }
+
+  void SignUpProvider(String email, String password, context) async{
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      showTextMessage(context, 'Akun berhasil dibuat');
+      Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        showTextMessage(context, 'Kata sandi terlalu lemah');
+      } else if (e.code == 'email-already-in-use') {
+        showTextMessage(context, 'Akun berikut sudah terdaftar');
+      }
+    } catch (e) {
+      return;
+    }
   }
 
   void logOut(context) async {

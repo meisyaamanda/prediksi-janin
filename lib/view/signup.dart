@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:janin/provider/auth.dart';
 import 'package:janin/view/signin/signin.dart';
+import 'package:provider/provider.dart';
 import '../theme.dart';
 
 class SignUp extends StatefulWidget {
@@ -13,6 +15,11 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
+    Auth auth = Provider.of<Auth>(context, listen: false);
+    final _formKey = GlobalKey<FormState>();
+
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
@@ -37,8 +44,9 @@ class _SignUpState extends State<SignUp> {
                 child: Text(
                   'Masukkan data dibawah ini untuk mempunyai akun',
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 20,
                   ),
+                  textAlign: TextAlign.center,
                 ),
               ),
               const SizedBox(
@@ -50,11 +58,14 @@ class _SignUpState extends State<SignUp> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        side: BorderSide(color: blackColor, width: 1),
+                        borderRadius: BorderRadius.circular(20),
                       ),
                       backgroundColor: Colors.white,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      auth.signInWithGoogle();
+                    },
                     child: Text(
                       'Masuk dengan Google',
                       style: buttonText,
@@ -66,9 +77,12 @@ class _SignUpState extends State<SignUp> {
                 height: 20,
               ),
               //namalengkap
-              Text(
-                'Nama Lengkap',
-                style: labelText,
+              Form(
+                key: _formKey,
+                child: Text(
+                  'Nama Lengkap',
+                  style: labelText,
+                ),
               ),
               SizedBox(
                 height: 10,
@@ -76,7 +90,7 @@ class _SignUpState extends State<SignUp> {
               TextFormField(
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide(),
                   ),
                   hintText: 'Anindira Alista',
@@ -94,6 +108,7 @@ class _SignUpState extends State<SignUp> {
                 height: 10,
               ),
               TextFormField(
+                controller: emailController,
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -114,9 +129,10 @@ class _SignUpState extends State<SignUp> {
                 height: 10,
               ),
               TextFormField(
+                controller: passwordController,
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide(),
                   ),
                   hintText: 'Masukkan Kata Sandi',
@@ -132,16 +148,18 @@ class _SignUpState extends State<SignUp> {
                   width: 277,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
+                      side: BorderSide(
+                        color: blackColor,
+                        width: 1,
+                      ),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(20),
                       ),
                       backgroundColor: pinkColor,
                     ),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SignIn()),
-                      );
+                      auth.SignUpProvider(emailController.text,
+                          passwordController.text, context);
                     },
                     child: Text(
                       'Daftar',
@@ -157,8 +175,12 @@ class _SignUpState extends State<SignUp> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Center(
-                    child: Text('Sudah Punya Akun?',
-                        style: GoogleFonts.poppins(fontSize: 12)),
+                    child: Text(
+                      'Sudah Punya Akun?',
+                      style: GoogleFonts.poppins(
+                        fontSize: 12,
+                      ),
+                    ),
                   ),
                   TextButton(
                     onPressed: () {
