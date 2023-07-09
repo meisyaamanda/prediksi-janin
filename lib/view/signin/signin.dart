@@ -1,0 +1,217 @@
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:janin/provider/auth.dart';
+import 'package:janin/theme.dart';
+import 'package:janin/view/signup.dart';
+import 'package:provider/provider.dart';
+
+class SignIn extends StatefulWidget {
+  const SignIn({super.key});
+
+  @override
+  State<SignIn> createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
+  @override
+  Widget build(BuildContext context) {
+    final _formkey = GlobalKey<FormState>(); 
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+
+    Auth auth = Provider.of<Auth>(context, listen: false);
+    return Scaffold(
+      body: SafeArea(
+          child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              //Text judul
+              Center(
+                child: Text(
+                  'Selamat Datang',
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: pinkColor),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Center(
+                child: Text(
+                  'Masuk dengan akun yang kamu miliki',
+                  style: TextStyle(
+                    fontSize: 22,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              //Image
+              Container(
+                height: 180,
+                width: 400,
+                child: Image.asset('assets/image/logo.png'),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              //Email
+              Form(
+                key: _formkey,
+                child: Text(
+                  'Email / Nomor HP',
+                  style: labelText,
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                keyboardType: TextInputType.emailAddress,
+                textInputAction: TextInputAction.next,
+                controller: emailController,
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(),
+                  ),
+                  hintText: 'Masukkan Email / Nomor HP',
+                  hintStyle: greyTextStyle.copyWith(fontSize: 14),
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Email tidak boleh kosong';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              //Kata Sandi
+              Text(
+                'Kata Sandi',
+                style: labelText,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                controller: passwordController,
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(),
+                  ),
+                  hintText: 'Masukkan Kata Sandi',
+                  hintStyle: greyTextStyle.copyWith(fontSize: 14),
+                  suffixIcon: Icon(Icons.visibility_off),
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Password tidak boleh kosong';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              //Lupa Sandi
+              Container(
+                alignment: Alignment.bottomRight,
+                child: TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Lupa Kata Sandi?',
+                    style: labelText,
+                  ),
+                ),
+              ),
+              //Button
+              Center(
+                child: Container(
+                  width: 277,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      backgroundColor: pinkColor,
+                    ),
+                    onPressed: () async {
+                      if (_formkey.currentState!.validate());
+                      auth.SignInProvider(
+                        emailController.text,
+                        passwordController.text,
+                        context,
+                      );
+                    },
+                    child: Text(
+                      'Masuk',
+                      style: buttonText,
+                    ),
+                  ),
+                ),
+              ),
+              //Google
+              Center(
+                child: Container(
+                  width: 204,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      backgroundColor: Colors.white,
+                    ),
+                    onPressed: () {
+                      auth.signInWithGoogle();
+                    },
+                    child: Text(
+                      'Masuk dengan Google',
+                      style: buttonText,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: Text('Belum Punya Akun?',
+                        style: GoogleFonts.poppins(fontSize: 12)),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignUp(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'Daftar',
+                      style: buttonlabelText.copyWith(
+                          decoration: TextDecoration.underline),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      )),
+    );
+  }
+}
