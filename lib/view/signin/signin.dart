@@ -13,12 +13,12 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    final _formkey = GlobalKey<FormState>(); 
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
-
     Auth auth = Provider.of<Auth>(context, listen: false);
     return Scaffold(
       body: SafeArea(
@@ -63,63 +63,70 @@ class _SignInState extends State<SignIn> {
               ),
               //Email
               Form(
-                key: _formkey,
-                child: Text(
-                  'Email / Nomor HP',
-                  style: labelText,
+                key: _formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Email / Nomor HP',
+                      style: labelText,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.emailAddress,
+                      textInputAction: TextInputAction.next,
+                      controller: emailController,
+                      decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(),
+                        ),
+                        hintText: 'Masukkan Email / Nomor HP',
+                        hintStyle: greyTextStyle.copyWith(fontSize: 14),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Email tidak boleh kosong';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    //Kata Sandi
+                    Text(
+                      'Kata Sandi',
+                      style: labelText,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                      controller: passwordController,
+                      decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(),
+                        ),
+                        hintText: 'Masukkan Kata Sandi',
+                        hintStyle: greyTextStyle.copyWith(fontSize: 14),
+                        suffixIcon: Icon(Icons.visibility_off),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Password tidak boleh kosong';
+                        }
+                        return null;
+                      },
+                    ),
+                  ],
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                keyboardType: TextInputType.emailAddress,
-                textInputAction: TextInputAction.next,
-                controller: emailController,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(),
-                  ),
-                  hintText: 'Masukkan Email / Nomor HP',
-                  hintStyle: greyTextStyle.copyWith(fontSize: 14),
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Email tidak boleh kosong';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              //Kata Sandi
-              Text(
-                'Kata Sandi',
-                style: labelText,
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                controller: passwordController,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(),
-                  ),
-                  hintText: 'Masukkan Kata Sandi',
-                  hintStyle: greyTextStyle.copyWith(fontSize: 14),
-                  suffixIcon: Icon(Icons.visibility_off),
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Password tidak boleh kosong';
-                  }
-                  return null;
-                },
-              ),
+
               const SizedBox(
                 height: 5,
               ),
@@ -146,7 +153,7 @@ class _SignInState extends State<SignIn> {
                       backgroundColor: pinkColor,
                     ),
                     onPressed: () async {
-                      if (_formkey.currentState!.validate());
+                      if (_formKey.currentState!.validate()) ;
                       auth.SignInProvider(
                         emailController.text,
                         passwordController.text,

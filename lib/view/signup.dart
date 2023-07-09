@@ -15,139 +15,142 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: Text(
-                'Daftar Akun',
-                style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: pinkColor),
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Center(
-              child: Text(
-                'Masukkan data dibawah ini untuk mempunyai akun',
-                style: TextStyle(
-                  fontSize: 22,
+          child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Text(
+                  'Daftar Akun',
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: pinkColor),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Center(
-              child: Container(
-                width: 204,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+              const SizedBox(
+                height: 10,
+              ),
+              Center(
+                child: Text(
+                  'Masukkan data dibawah ini untuk mempunyai akun',
+                  style: TextStyle(
+                    fontSize: 22,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Center(
+                child: Container(
+                  width: 204,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      backgroundColor: Colors.white,
                     ),
-                    backgroundColor: Colors.white,
-                  ),
-                  onPressed: () {},
-                  child: Text(
-                    'Masuk dengan Google',
-                    style: buttonText,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            //namalengkap
-            Text(
-              'Nama Lengkap',
-              style: labelText,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextFormField(
-              decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(),
-                ),
-                hintText: 'Anindira Alista',
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            //email
-            Text(
-              'Email',
-              style: labelText,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextFormField(
-              decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(),
-                ),
-                hintText: 'Masukkan Email / Nomor HP',
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            //Kata Sandi
-            Text(
-              'Kata Sandi',
-              style: labelText,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextFormField(
-              decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(),
-                ),
-                hintText: 'Masukkan Kata Sandi',
-                suffixIcon: Icon(Icons.visibility_off),
-              ),
-            ),
-            const SizedBox(height: 50,),
-            //Button
-            Center(
-              child: Container(
-                width: 277,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                    onPressed: () {},
+                    child: Text(
+                      'Masuk dengan Google',
+                      style: buttonText,
                     ),
-                    backgroundColor: pinkColor,
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SignIn()),
-                    );
-                  },
-                  child: Text(
-                    'Daftar',
-                    style: buttonText,
                   ),
                 ),
               ),
-            ),
-            const SizedBox(
+              const SizedBox(
+                height: 20,
+              ),
+              //namalengkap
+              Text(
+                'Nama Lengkap',
+                style: labelText,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(),
+                  ),
+                  hintText: 'Anindira Alista',
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              //email
+              Text(
+                'Email',
+                style: labelText,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(),
+                  ),
+                  hintText: 'Masukkan Email / Nomor HP',
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              //Kata Sandi
+              Text(
+                'Kata Sandi',
+                style: labelText,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(),
+                  ),
+                  hintText: 'Masukkan Kata Sandi',
+                  suffixIcon: Icon(Icons.visibility_off),
+                ),
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              //Button
+              Center(
+                child: Container(
+                  width: 277,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      backgroundColor: pinkColor,
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignIn()),
+                      );
+                    },
+                    child: Text(
+                      'Daftar',
+                      style: buttonText,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
                 height: 20,
               ),
               Row(
@@ -169,7 +172,8 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ],
               ),
-          ],
+            ],
+          ),
         ),
       )),
     );
