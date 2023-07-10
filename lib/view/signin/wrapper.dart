@@ -13,9 +13,11 @@ class Wrapper extends StatelessWidget {
     Auth auth = Provider.of<Auth>(context);
     return StreamBuilder<User?>(
       stream: auth.streamAuthStatus(),
-      builder: (context, snapshot){
-        if(snapshot.connectionState == ConnectionState.active){
-          return (snapshot.data != null) ? Profil() : SignIn();
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.active) {
+          return (snapshot.data != null && snapshot.data!.emailVerified == true)
+              ? Profil()
+              : SignIn();
         } else {
           return Center(
             child: CircularProgressIndicator(),

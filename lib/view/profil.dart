@@ -86,7 +86,7 @@ class _ProfilState extends State<Profil> {
                       style: GoogleFonts.poppins(fontSize: 14, color: blackColor),
                     ),
                     const SizedBox(
-                      width: 150,
+                      width: 130,
                     ),
                     Icon(
                       Icons.arrow_forward_ios,
@@ -123,7 +123,7 @@ class _ProfilState extends State<Profil> {
                       style: GoogleFonts.poppins(fontSize: 14, color: blackColor),
                     ),
                     const SizedBox(
-                      width: 150,
+                      width: 130,
                     ),
                     Icon(
                       Icons.arrow_forward_ios,
@@ -160,7 +160,7 @@ class _ProfilState extends State<Profil> {
                       style: GoogleFonts.poppins(fontSize: 14, color: blackColor),
                     ),
                     const SizedBox(
-                      width: 150,
+                      width: 130,
                     ),
                     Icon(
                       Icons.arrow_forward_ios,

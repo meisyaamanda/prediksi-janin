@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:janin/provider/auth.dart';
+import 'package:janin/provider/iconkatasandi.dart';
 import 'package:janin/theme.dart';
+import 'package:janin/view/profil.dart';
 import 'package:janin/view/signin/lupasandi.dart';
 import 'package:janin/view/signup.dart';
 import 'package:provider/provider.dart';
@@ -111,32 +113,42 @@ class _SignInState extends State<SignIn> {
                     SizedBox(
                       height: 10,
                     ),
-                    TextFormField(
-                      controller: passwordController,
-                      textInputAction: TextInputAction.done,
-                      decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            borderSide:
-                                BorderSide(color: blackColor, width: 1)),
-                        hintText: 'Masukkan Kata Sandi',
-                        hintStyle: greyTextStyle.copyWith(fontSize: 14),
-                        suffixIcon: Icon(
-                          Icons.visibility_off,
-                        ),
-                      ),
-                      obscureText: true,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Password tidak boleh kosong';
-                        }
-                        return null;
+                    Consumer<IconKataSandi>(
+                      builder: (context, data, _) {
+                        return TextFormField(
+                          controller: passwordController,
+                          textInputAction: TextInputAction.done,
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide:
+                                    BorderSide(color: blackColor, width: 1)),
+                            hintText: 'Masukkan Kata Sandi',
+                            hintStyle: greyTextStyle.copyWith(fontSize: 14),
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                data.changeVisible(data.isvisible);
+                              },
+                              icon: Icon(
+                                data.isvisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                              ),
+                            ),
+                          ),
+                          obscureText: !data.isvisible,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Password tidak boleh kosong';
+                            }
+                            return null;
+                          },
+                        );
                       },
                     ),
                   ],
                 ),
               ),
-          
               const SizedBox(
                 height: 5,
               ),
@@ -166,7 +178,7 @@ class _SignInState extends State<SignIn> {
                     style: ElevatedButton.styleFrom(
                       side: BorderSide(color: blackColor, width: 1),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(20),
                       ),
                       backgroundColor: pinkColor,
                     ),
@@ -187,22 +199,33 @@ class _SignInState extends State<SignIn> {
               ),
               //Google
               Center(
-                child: Container(
-                  width: 204,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      side: BorderSide(color: blackColor, width: 1),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Container(
+                    width: 220,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        side: BorderSide(color: blackColor, width: 1),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        backgroundColor: Colors.white,
                       ),
-                      backgroundColor: Colors.white,
-                    ),
-                    onPressed: () {
-                      auth.signInWithGoogle();
-                    },
-                    child: Text(
-                      'Masuk dengan Google',
-                      style: buttonText,
+                      onPressed: () async {
+                        await auth.signInWithGoogle();
+                        if (mounted) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Profil(),
+                            ),
+                          );
+                        }
+                      },
+                      child: Text(
+                        'Masuk dengan Google',
+                        style: buttonText,
+                      ),
                     ),
                   ),
                 ),
