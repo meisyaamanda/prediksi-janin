@@ -11,6 +11,10 @@ Color blackColor = Colors.black;
 Color whiteColor = Colors.white;
 
 //Font Text
+TextStyle deskripsiText = GoogleFonts.poppins(
+  fontSize: 12,
+  color: Colors.black
+);
 TextStyle labelText = GoogleFonts.poppins(
   fontSize: 14,
   color: Colors.black
