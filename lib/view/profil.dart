@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:janin/provider/auth.dart';
 import 'package:janin/theme.dart';
+import 'package:janin/view/tentang.dart';
 import 'package:provider/provider.dart';
 
 class Profil extends StatefulWidget {
@@ -36,9 +37,9 @@ class _ProfilState extends State<Profil> {
       ),
       body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Column(
-                  children: [
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          children: [
             const SizedBox(
               height: 20,
             ),
@@ -62,111 +63,89 @@ class _ProfilState extends State<Profil> {
             const SizedBox(
               height: 20,
             ),
-            Container(
-              height: 44,
-              width: 325,
-              decoration: BoxDecoration(
-                border: Border.all(color: blackColor),
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.white,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.person,
-                      color: pinkColor,
-                    ),
-                    const SizedBox(
-                      width: 30,
-                    ),
-                    Text(
-                      'Edit Profile',
-                      style: GoogleFonts.poppins(fontSize: 14, color: blackColor),
-                    ),
-                    const SizedBox(
-                      width: 130,
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.black,
-                    ),
-                  ],
+            InkWell(
+              onTap: () {},
+              child: Container(
+                height: 44,
+                width: 325,
+                decoration: BoxDecoration(
+                  border: Border.all(color: blackColor),
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.white,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.person,
+                        color: pinkColor,
+                      ),
+                      const SizedBox(
+                        width: 30,
+                      ),
+                      Text(
+                        'Edit Profile',
+                        style: GoogleFonts.poppins(
+                            fontSize: 14, color: blackColor),
+                      ),
+                      const SizedBox(
+                        width: 130,
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.black,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
             const SizedBox(
               height: 20,
             ),
-            Container(
-              height: 44,
-              width: 325,
-              decoration: BoxDecoration(
-               borderRadius: BorderRadius.circular(20),
-               border: Border.all(color: blackColor),
-                color: Colors.white,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.person,
-                      color: pinkColor,
-                    ),
-                    const SizedBox(
-                      width: 30,
-                    ),
-                    Text(
-                      'Edit Profile',
-                      style: GoogleFonts.poppins(fontSize: 14, color: blackColor),
-                    ),
-                    const SizedBox(
-                      width: 130,
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.black,
-                    ),
-                  ],
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Tentang(),
+                  ),
+                );
+              },
+              child: Container(
+                height: 44,
+                width: 325,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: blackColor),
+                  color: Colors.white,
                 ),
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Container(
-              height: 44,
-              width: 325,
-              decoration: BoxDecoration(
-                border: Border.all(color: blackColor),
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.white,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.person,
-                      color: pinkColor,
-                    ),
-                    const SizedBox(
-                      width: 30,
-                    ),
-                    Text(
-                      'Edit Profile',
-                      style: GoogleFonts.poppins(fontSize: 14, color: blackColor),
-                    ),
-                    const SizedBox(
-                      width: 130,
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.black,
-                    ),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.person,
+                        color: pinkColor,
+                      ),
+                      const SizedBox(
+                        width: 30,
+                      ),
+                      Text(
+                        'Tentang Kami',
+                        style: GoogleFonts.poppins(
+                            fontSize: 14, color: blackColor),
+                      ),
+                      const SizedBox(
+                        width: 130,
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.black,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -198,9 +177,9 @@ class _ProfilState extends State<Profil> {
                 ),
               ),
             ),
-                  ],
-                ),
-          )),
+          ],
+        ),
+      )),
     );
   }
 }
