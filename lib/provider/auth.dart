@@ -42,7 +42,7 @@ class Auth with ChangeNotifier {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const Beranda(),
+          builder: (context) => Beranda(),
         ),
       );
     } on FirebaseAuthException catch (e) {

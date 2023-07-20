@@ -104,7 +104,7 @@ class Beranda extends StatelessWidget {
                                 MaterialPageRoute(
                                     builder: (context) => Produk()),
                               );
-                            } as ProdukModel,
+                            },
                           );
                         },
                       ),
