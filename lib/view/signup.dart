@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:janin/provider/auth.dart';
 import 'package:janin/provider/iconkatasandi.dart';
-import 'package:janin/provider/signupprovider.dart';
 import 'package:provider/provider.dart';
 import '../theme.dart';
 
@@ -17,8 +16,8 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     Auth auth = Provider.of<Auth>(context, listen: false);
-    NamaProfilProvider namaProvider =
-        Provider.of<NamaProfilProvider>(context, listen: false);
+    // NamaProfilProvider namaProvider =
+    //     Provider.of<NamaProfilProvider>(context, listen: false);
     final _formKey = GlobalKey<FormState>();
 
     TextEditingController emailController = TextEditingController();
@@ -97,7 +96,7 @@ class _SignUpState extends State<SignUp> {
                         height: 10,
                       ),
                       TextFormField(
-                        controller: namaProvider.namaProfil,
+                        // controller: namaProvider.namaProfil,
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),

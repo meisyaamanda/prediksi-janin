@@ -41,3 +41,8 @@ TextStyle appBarStyle = GoogleFonts.poppins(
   fontSize: 20,
   fontWeight: FontWeight.bold,
 );
+TextStyle buttonlabelhomeText = GoogleFonts.poppins(
+  fontSize: 14,
+  color: Colors.blue,
+  fontWeight: FontWeight.w500,
+);

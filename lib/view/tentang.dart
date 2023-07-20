@@ -78,7 +78,7 @@ class Tentang extends StatelessWidget {
                                 height: 20,
                               ),
                               Text(
-                                data['deskripsi'],
+                                data['penjelasan'],
                                 style: deskripsiText,
                                 textAlign: TextAlign.justify,
                               ),

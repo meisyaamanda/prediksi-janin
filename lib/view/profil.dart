@@ -90,7 +90,7 @@ class _ProfilState extends State<Profil> {
                             fontSize: 14, color: blackColor),
                       ),
                       const SizedBox(
-                        width: 130,
+                        width: 120,
                       ),
                       Icon(
                         Icons.arrow_forward_ios,
@@ -138,7 +138,7 @@ class _ProfilState extends State<Profil> {
                             fontSize: 14, color: blackColor),
                       ),
                       const SizedBox(
-                        width: 130,
+                        width: 120,
                       ),
                       Icon(
                         Icons.arrow_forward_ios,

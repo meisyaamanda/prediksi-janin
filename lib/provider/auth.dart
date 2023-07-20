@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:janin/view/home/beranda.dart';
 import 'package:janin/view/profil.dart';
 import 'package:janin/view/signin/signin.dart';
 import 'package:janin/view/signin/snackbar.dart';
@@ -41,7 +42,7 @@ class Auth with ChangeNotifier {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const Profil(),
+          builder: (context) => const Beranda(),
         ),
       );
     } on FirebaseAuthException catch (e) {
