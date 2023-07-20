@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:janin/provider/auth.dart';
 import 'package:janin/provider/iconkatasandi.dart';
 import 'package:janin/theme.dart';
-import 'package:janin/view/profil.dart';
+import 'package:janin/view/profil/profil.dart';
 import 'package:janin/view/signin/lupasandi.dart';
 import 'package:janin/view/signup.dart';
 import 'package:provider/provider.dart';

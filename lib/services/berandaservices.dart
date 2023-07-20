@@ -13,4 +13,14 @@ class BerandaService {
     DocumentReference docRef = firestore.collection("produk").doc(id);
     return docRef.get();
   }
+
+  Stream<QuerySnapshot<Object?>> streamTips() {
+    CollectionReference data = firestore.collection("tips");
+    return data.snapshots();
+  }
+
+  Future<DocumentSnapshot<Object?>> getByIDTips(String id) async {
+    DocumentReference docRef = firestore.collection("tips").doc(id);
+    return docRef.get();
+  }
 }

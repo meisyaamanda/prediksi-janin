@@ -9,10 +9,12 @@ Color kPrimaryColor = const Color(0xff5C40CC);
 Color kGreyColor = const Color(0xff9698A9);
 Color blackColor = Colors.black;
 Color whiteColor = Colors.white;
+Color starColor = const Color(0xffE4B548);
+Color navbarColor = const Color(0xffFF5252);
 
 //Font Text
 TextStyle deskripsiText = GoogleFonts.poppins(
-  fontSize: 12,
+  fontSize: 14,
   color: Colors.black
 );
 TextStyle labelText = GoogleFonts.poppins(

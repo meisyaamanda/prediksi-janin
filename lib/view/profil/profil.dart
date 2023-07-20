@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:janin/provider/auth.dart';
 import 'package:janin/theme.dart';
-import 'package:janin/view/tentang.dart';
+import 'package:janin/view/profil/tentang.dart';
 import 'package:provider/provider.dart';
 
 class Profil extends StatefulWidget {
