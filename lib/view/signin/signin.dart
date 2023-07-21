@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:janin/provider/auth.dart';
 import 'package:janin/provider/iconkatasandi.dart';
 import 'package:janin/theme.dart';
+import 'package:janin/view/home/navbar.dart';
 import 'package:janin/view/profil/profil.dart';
 import 'package:janin/view/signin/lupasandi.dart';
 import 'package:janin/view/signup.dart';
@@ -199,35 +200,29 @@ class _SignInState extends State<SignIn> {
               ),
               //Google
               Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Container(
-                    width: 220,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        side: BorderSide(color: blackColor, width: 1),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+                child: FloatingActionButton.extended(
+                  onPressed: () async {
+                    await auth.signInWithGoogle();
+                    if (mounted) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Navbar(),
                         ),
-                        backgroundColor: Colors.white,
-                      ),
-                      onPressed: () async {
-                        await auth.signInWithGoogle();
-                        if (mounted) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const Profil(),
-                            ),
-                          );
-                        }
-                      },
-                      child: Text(
-                        'Masuk dengan Google',
-                        style: buttonText,
-                      ),
-                    ),
+                      );
+                    }
+                  },
+                  icon: Image.asset(
+                    'assets/image/google.png',
+                    height: 24,
+                    width: 24,
                   ),
+                  label: Text(
+                    'Masuk Dengan Google',
+                    style: GoogleFonts.poppins(fontSize: 12),
+                  ),
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.black,
                 ),
               ),
               const SizedBox(

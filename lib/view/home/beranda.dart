@@ -7,6 +7,7 @@ import 'package:janin/services/berandaservices.dart';
 import 'package:janin/theme.dart';
 import 'package:janin/view/detail/detailtips.dart';
 import 'package:janin/view/detail/produk.dart';
+import 'package:janin/view/home/prediksi.dart';
 import 'package:janin/view/home/produk.dart';
 import 'package:janin/view/home/tips.dart';
 import 'package:janin/view/home/widget/produkcard.dart';
@@ -39,23 +40,47 @@ class Beranda extends StatelessWidget {
                 ),
                 Center(
                   child: Container(
-                    height: 115,
+                    height: 150,
                     width: 307,
                     decoration: BoxDecoration(
                       border: Border.all(),
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Text(
-                        'Untuk mengetahui kondisi janin anda dapat mengisi form dengan klik button form prediksi',
-                        style: GoogleFonts.poppins(
-                          color: pinkColor,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Text(
+                            'Untuk mengetahui kondisi janin anda dapat mengisi form dengan klik button form prediksi',
+                            style: GoogleFonts.poppins(
+                              color: pinkColor,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
-                        textAlign: TextAlign.center,
-                      ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: pinkColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PrediksiForm(),
+                              ),
+                            );
+                          },
+                          child: Text('Form Prediksi'),
+                        ),
+                      ],
                     ),
                   ),
                 ),

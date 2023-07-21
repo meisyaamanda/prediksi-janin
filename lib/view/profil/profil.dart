@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:janin/provider/auth.dart';
 import 'package:janin/theme.dart';
+import 'package:janin/view/profil/editprofil.dart';
 import 'package:janin/view/profil/tentang.dart';
 import 'package:provider/provider.dart';
 
@@ -64,7 +65,14 @@ class _ProfilState extends State<Profil> {
               height: 20,
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => EditProfil(),
+                  ),
+                );
+              },
               child: Container(
                 height: 44,
                 width: 325,
@@ -90,7 +98,7 @@ class _ProfilState extends State<Profil> {
                             fontSize: 14, color: blackColor),
                       ),
                       const SizedBox(
-                        width: 120,
+                        width: 150,
                       ),
                       Icon(
                         Icons.arrow_forward_ios,

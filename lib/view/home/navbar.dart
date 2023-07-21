@@ -17,7 +17,7 @@ class Navbar extends StatefulWidget {
 class _NavbarState extends State<Navbar> {
   List<dynamic> screens = [
   Beranda(),
-  const Tips(),
+  Tips(),
   const Riwayat(),
   const Profil(),
   ];
@@ -43,8 +43,8 @@ class _NavbarState extends State<Navbar> {
           BottomNavigationBarItem(
             label: 'Tips',
             icon: Icon((currentScreenIndex == 1)
-                ? Icons.location_on
-                : Icons.location_on_outlined),
+                ? Icons.lightbulb
+                : Icons.lightbulb_outlined),
           ),
           BottomNavigationBarItem(
             label: 'Riwayat',

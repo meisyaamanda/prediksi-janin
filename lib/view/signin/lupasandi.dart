@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:janin/view/signin/kodeotp.dart';
 import 'package:janin/view/signin/signin.dart';
 import 'package:janin/view/signin/wrapper.dart';
 
@@ -105,7 +106,14 @@ class _LupaSandiState extends State<LupaSandi> {
                         ),
                         backgroundColor: pinkColor,
                       ),
-                      onPressed: () async {},
+                      onPressed: (){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Kodeotp(),
+                            ),
+                          );
+                      },
                       child: Text(
                         'Selanjutnya',
                         style: buttonText,

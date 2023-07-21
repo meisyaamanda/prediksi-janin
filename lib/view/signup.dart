@@ -4,6 +4,7 @@ import 'package:janin/provider/auth.dart';
 import 'package:janin/provider/iconkatasandi.dart';
 import 'package:provider/provider.dart';
 import '../theme.dart';
+import 'home/navbar.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -59,25 +60,46 @@ class _SignUpState extends State<SignUp> {
                   height: 20,
                 ),
                 Center(
-                  child: Container(
-                    width: 220,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(color: blackColor, width: 1),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        backgroundColor: Colors.white,
-                      ),
-                      onPressed: () {
-                        auth.signInWithGoogle();
-                      },
-                      child: Text(
-                        'Masuk dengan Google',
-                        style: buttonText,
+                  child: FloatingActionButton.extended(
+                    onPressed: () async {
+                      await auth.signInWithGoogle();
+                      if (mounted) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Navbar(),
+                          ),
+                        );
+                      }
+                    },
+                    icon: Image.asset(
+                      'assets/image/google.png',
+                      height: 24,
+                      width: 24,
+                    ),
+                    label: Text(
+                      'Masuk Dengan Google',
+                      style: GoogleFonts.poppins(fontSize: 12),
+                    ),
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.black,
+                  ),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                Row(
+                  children: [
+                    Expanded(child: Divider()),
+                    Text(
+                      'atau',
+                      style: GoogleFonts.poppins(
+                        color: Colors.grey,
+                        fontSize: 14,
                       ),
                     ),
-                  ),
+                    Expanded(child: Divider()),
+                  ],
                 ),
                 const SizedBox(
                   height: 20,

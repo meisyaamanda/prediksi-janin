@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:janin/theme.dart';
+import 'package:janin/view/signin/konfirmasi.dart';
 import 'package:janin/view/signin/wrapper.dart';
 
 class Kodeotp extends StatefulWidget {
@@ -143,7 +144,14 @@ class _KodeotpState extends State<Kodeotp> {
                           ),
                           backgroundColor: pinkColor,
                         ),
-                        onPressed: () async {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => KonfirmasiPassword(),
+                            ),
+                          );
+                        },
                         child: Text(
                           'Selanjutnya',
                           style: buttonText,
