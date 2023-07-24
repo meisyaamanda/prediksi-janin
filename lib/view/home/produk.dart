@@ -31,54 +31,56 @@ class Produk extends StatelessWidget {
         centerTitle: true,
       ),
       body: SafeArea(
-        child: StreamBuilder<QuerySnapshot<Object?>>(
-          stream: berandaService.streamProduk(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.active) {
-              var data = snapshot.data!.docs;
-              return Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: GridView.builder(
-                    shrinkWrap: true,
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: StreamBuilder(
+            stream: berandaService.streamProduk(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.active) {
+                var data = snapshot.data!.docs;
+                return Stack(
+                  children: [
+                    GridView.builder(
                     scrollDirection: Axis.vertical,
                     itemCount: data.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
+                      crossAxisSpacing: 10,
+                      childAspectRatio: 0.9,
+                      mainAxisExtent: 270,
                     ),
                     itemBuilder: (context, index) {
                       final dataProduk =
                           data[index].data() as Map<String, dynamic>;
                       return ProdukCard(
-                        produkModel: ProdukModel(
-                          logo: dataProduk['logo'],
-                          nama: dataProduk['nama'],
-                          kategori: dataProduk['kategori'],
-                          rate: dataProduk['rate'],
-                        ),
                         onPressed: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ProdukDetail(
-                                idDoc: data[index].id,
-                              ),
+                              builder: (contex) =>
+                                  ProdukDetail(idDoc: data[index].id),
                             ),
                           );
                         },
+                        produkModel: ProdukModel(
+                          nama: dataProduk['nama'],
+                          logo: dataProduk['logo'],
+                          kategori: dataProduk['kategori'],
+                          rate: dataProduk['rate'],
+                        ),
                       );
                     },
                   ),
-                ),
-              );
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          },
+                  ],
+                );
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            },
+          ),
         ),
       ),
     );

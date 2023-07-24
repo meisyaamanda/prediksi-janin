@@ -21,20 +21,12 @@ class _ProfilState extends State<Profil> {
       appBar: AppBar(
         backgroundColor: whiteColor,
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: blackColor,
-          ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
         title: Text(
           'Profil',
           style: appBarStyle,
         ),
         centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       body: SafeArea(
           child: Padding(

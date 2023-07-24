@@ -23,8 +23,8 @@ class ProdukCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
         ),
         child: Container(
-          width: 150,
-          height: 300,
+          width: 100,
+          height: 220,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: Colors.white,
@@ -52,6 +52,7 @@ class ProdukCard extends StatelessWidget {
                 ),
                 Container(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         produkModel.nama,

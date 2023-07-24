@@ -8,8 +8,8 @@ import '../../models/tipsmodel.dart';
 import '../../theme.dart';
 import '../detail/detailtips.dart';
 
-class Tips extends StatelessWidget {
-  Tips({super.key});
+class TipsBeranda extends StatelessWidget {
+  TipsBeranda({super.key});
 
   BerandaService berandaService = BerandaService();
 
@@ -19,9 +19,22 @@ class Tips extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Navbar(),
+              ),
+            );
+          },
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: blackColor,
+          ),
+        ),
         title: Text('Tips', style: appBarStyle),
         centerTitle: true,
-        automaticallyImplyLeading: false,
       ),
       body: SafeArea(
         child: Column(

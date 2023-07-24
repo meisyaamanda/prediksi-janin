@@ -28,54 +28,56 @@ class TipsDetail extends StatelessWidget {
             color: blackColor,
           ),
         ),
-        title: Text('Detail Tips', style:appBarStyle),
+        title: Text('Tips Detail', style:appBarStyle),
         centerTitle: true,
       ),
       body: SafeArea(
-        child: FutureBuilder(
-          future: berandaService.getByIDTips(idDoc),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              var datas = snapshot.data!;
-              final data = snapshot.data!.data() as Map<String, dynamic>;
-              return Column(
-                children: [
-                  const SizedBox(height: 20,),
-                  Image.network(
-                    data["logoT"],
-                    fit: BoxFit.cover,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    data["namaT"],
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: pinkColor,
+        child: SingleChildScrollView(
+          child: FutureBuilder(
+            future: berandaService.getByIDTips(idDoc),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                var datas = snapshot.data!;
+                final data = snapshot.data!.data() as Map<String, dynamic>;
+                return Column(
+                  children: [
+                    const SizedBox(height: 20,),
+                    Image.network(
+                      data["logoT"],
+                      fit: BoxFit.cover,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Text(
-                      data["deskripsiT"],
-                      style: deskripsiText,
-                      textAlign: TextAlign.justify,
+                    const SizedBox(
+                      height: 20,
                     ),
-                  ),
-                ],
-              );
-            } else {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          },
+                    Text(
+                      data["namaT"],
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: pinkColor,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Text(
+                        data["deskripsiT"],
+                        style: deskripsiText,
+                        textAlign: TextAlign.justify,
+                      ),
+                    ),
+                  ],
+                );
+              } else {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            },
+          ),
         ),
       ),
     );

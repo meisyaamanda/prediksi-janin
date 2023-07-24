@@ -90,7 +90,9 @@ class _SignUpState extends State<SignUp> {
                 ),
                 Row(
                   children: [
-                    Expanded(child: Divider()),
+                    Expanded(
+                      child: Divider(),
+                    ),
                     Text(
                       'atau',
                       style: GoogleFonts.poppins(
@@ -98,7 +100,9 @@ class _SignUpState extends State<SignUp> {
                         fontSize: 14,
                       ),
                     ),
-                    Expanded(child: Divider()),
+                    Expanded(
+                      child: Divider(),
+                    ),
                   ],
                 ),
                 const SizedBox(
@@ -119,8 +123,9 @@ class _SignUpState extends State<SignUp> {
                       ),
                       TextFormField(
                         // controller: namaProvider.namaProfil,
+                        textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
+                          border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                             borderSide: BorderSide(),
                           ),
@@ -146,12 +151,13 @@ class _SignUpState extends State<SignUp> {
                       ),
                       TextFormField(
                         controller: emailController,
+                        textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
+                          border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                             borderSide: BorderSide(),
                           ),
-                          hintText: 'Masukkan Email',
+                          hintText: 'anindira@gmail.com',
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -172,13 +178,13 @@ class _SignUpState extends State<SignUp> {
                         height: 10,
                       ),
                       TextFormField(
-                        controller: emailController,
+                        textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
+                          border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                             borderSide: BorderSide(),
                           ),
-                          hintText: 'Masukkan Nomor HP',
+                          hintText: '08xxxxxxxxxx',
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -201,9 +207,10 @@ class _SignUpState extends State<SignUp> {
                       Consumer<IconKataSandi>(
                         builder: (context, data, _) {
                           return TextFormField(
+                            textInputAction: TextInputAction.done,
                             controller: passwordController,
                             decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
+                              border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
                                 borderSide: BorderSide(),
                               ),

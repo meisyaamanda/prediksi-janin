@@ -74,7 +74,6 @@ class _SignInState extends State<SignIn> {
               Form(
                 key: _formKey,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
@@ -89,9 +88,8 @@ class _SignInState extends State<SignIn> {
                       textInputAction: TextInputAction.next,
                       controller: emailController,
                       decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
+                        border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
-                          borderSide: BorderSide(color: blackColor, width: 1),
                         ),
                         hintText: 'Masukkan Email / Nomor HP',
                         hintStyle: greyTextStyle.copyWith(fontSize: 14),
@@ -120,10 +118,9 @@ class _SignInState extends State<SignIn> {
                           controller: passwordController,
                           textInputAction: TextInputAction.done,
                           decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                                borderSide:
-                                    BorderSide(color: blackColor, width: 1)),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
                             hintText: 'Masukkan Kata Sandi',
                             hintStyle: greyTextStyle.copyWith(fontSize: 14),
                             suffixIcon: IconButton(

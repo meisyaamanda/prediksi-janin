@@ -26,7 +26,7 @@ class ProdukDetail extends StatelessWidget {
             color: blackColor,
           ),
         ),
-        title: Text('Detail Produk', style: appBarStyle),
+        title: Text('Produk Detail', style: appBarStyle),
         centerTitle: true,
       ),
       body: SafeArea(

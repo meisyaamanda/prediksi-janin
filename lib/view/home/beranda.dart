@@ -10,6 +10,7 @@ import 'package:janin/view/detail/produk.dart';
 import 'package:janin/view/home/prediksi.dart';
 import 'package:janin/view/home/produk.dart';
 import 'package:janin/view/home/tips.dart';
+import 'package:janin/view/home/tips_beranda.dart';
 import 'package:janin/view/home/widget/produkcard.dart';
 import 'package:janin/view/home/widget/tipscard.dart';
 
@@ -123,10 +124,18 @@ class Beranda extends StatelessWidget {
                       var data = snapshot.data!.docs;
                       return SizedBox(
                         height: 250,
-                        child: ListView.builder(
+                        child: GridView.builder(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 1,
+                            mainAxisSpacing: 10,
+                            crossAxisSpacing: 10,
+                            childAspectRatio: 0.9,
+                            mainAxisExtent: 190,
+                          ),
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
-                          itemCount: data.length,
+                          itemCount: 3,
                           itemBuilder: (context, index) {
                             final dataProduk =
                                 data[index].data() as Map<String, dynamic>;
@@ -177,7 +186,7 @@ class Beranda extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Tips(),
+                            builder: (context) => TipsBeranda(),
                           ),
                         );
                       },
