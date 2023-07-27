@@ -123,7 +123,7 @@ class Beranda extends StatelessWidget {
                     if (snapshot.connectionState == ConnectionState.active) {
                       var data = snapshot.data!.docs;
                       return SizedBox(
-                        height: 250,
+                        height: 280,
                         child: GridView.builder(
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(

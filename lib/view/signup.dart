@@ -17,12 +17,12 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     Auth auth = Provider.of<Auth>(context, listen: false);
-    // NamaProfilProvider namaProvider =
-    //     Provider.of<NamaProfilProvider>(context, listen: false);
     final _formKey = GlobalKey<FormState>();
-
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
+    TextEditingController namaController = TextEditingController();
+    TextEditingController noController = TextEditingController();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: whiteColor,
@@ -122,7 +122,7 @@ class _SignUpState extends State<SignUp> {
                         height: 10,
                       ),
                       TextFormField(
-                        // controller: namaProvider.namaProfil,
+                        controller: namaController,
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
@@ -169,7 +169,7 @@ class _SignUpState extends State<SignUp> {
                       const SizedBox(
                         height: 20,
                       ),
-                      //email
+                      //nohp
                       Text(
                         'No HP',
                         style: labelText,
@@ -178,6 +178,8 @@ class _SignUpState extends State<SignUp> {
                         height: 10,
                       ),
                       TextFormField(
+                        controller: noController,
+                        keyboardType: TextInputType.phone,
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(

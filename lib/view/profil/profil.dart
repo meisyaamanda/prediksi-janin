@@ -76,14 +76,15 @@ class _ProfilState extends State<Profil> {
                 child: Padding(
                   padding: const EdgeInsets.all(10),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Icon(
                         Icons.person,
                         color: pinkColor,
                       ),
-                      const SizedBox(
-                        width: 30,
-                      ),
+                      // const SizedBox(
+                      //   width: 30,
+                      // ),
                       Text(
                         'Edit Profile',
                         style: GoogleFonts.poppins(
@@ -124,14 +125,15 @@ class _ProfilState extends State<Profil> {
                 child: Padding(
                   padding: const EdgeInsets.all(10),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Icon(
-                        Icons.person,
+                        Icons.info,
                         color: pinkColor,
                       ),
-                      const SizedBox(
-                        width: 30,
-                      ),
+                      // const SizedBox(
+                      //   width: 30,
+                      // ),
                       Text(
                         'Tentang Kami',
                         style: GoogleFonts.poppins(

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -9,6 +10,7 @@ import 'package:janin/view/signin/snackbar.dart';
 
 class Auth with ChangeNotifier {
   FirebaseAuth auth = FirebaseAuth.instance;
+  FirebaseFirestore db = FirebaseFirestore.instance;
 
   Stream<User?> streamAuthStatus() {
     return auth.authStateChanges();
@@ -56,7 +58,8 @@ class Auth with ChangeNotifier {
     notifyListeners();
   }
 
-  void SignUpProvider(String email, String password, context) async{
+  void SignUpProvider(
+      String email, String password, context) async {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
@@ -75,6 +78,26 @@ class Auth with ChangeNotifier {
     }
   }
 
+  // void resetPassword(String email) async {
+  //   if (email != "" && EmailValidator.validate(email)) {
+  //     try {
+  //       await auth.sendPasswordResetEmail(email: email);
+
+  //       message = "We have sent a verification reset password to $email ";
+  //     } catch (e) {
+  //       // Get.defaultDialog(
+  //       //   title: "Something went wrong",
+  //       //   middleText: "Can't sent reset password",
+  //       // );
+  //     }
+  //   } else {
+  //     // Get.defaultDialog(
+  //     //   title: "Something went wrong",
+  //     //   middleText: "Invalid Email",
+  //     // );
+  //   }
+  // }
+
   void logOut(context) async {
     await auth.signOut();
     Navigator.pushReplacement(
@@ -83,5 +106,18 @@ class Auth with ChangeNotifier {
         builder: (context) => const SignIn(),
       ),
     );
+    notifyListeners();
   }
+
+  // postDetailsToFirestore(String email, String password, context) {
+  //   User? user = FirebaseAuth.instance.currentUser;
+  //   FirebaseFirestore db = FirebaseFirestore.instance;
+  //   final userData = <String, dynamic>{
+  //     "namaController": nama,
+  //     "emailController": email,
+  //     "passwordController": password,
+  //     "noController": no,
+  //   };
+  //   db.collection("users").doc(user!.uid).set(userData);
+  // }
 }
