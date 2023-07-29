@@ -58,14 +58,15 @@ class Auth with ChangeNotifier {
     notifyListeners();
   }
 
-  void SignUpProvider(
-      String email, String password, context) async {
+  void SignUpProvider(String email, String password, String nama, String no, context) async {
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      UserCredential user = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
+      await user.user!.sendEmailVerification();
       showTextMessage(context, 'Akun berhasil dibuat');
+      postDetailsToFirestore(email, nama, no, context);
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -109,15 +110,26 @@ class Auth with ChangeNotifier {
     notifyListeners();
   }
 
-  // postDetailsToFirestore(String email, String password, context) {
-  //   User? user = FirebaseAuth.instance.currentUser;
-  //   FirebaseFirestore db = FirebaseFirestore.instance;
-  //   final userData = <String, dynamic>{
-  //     "namaController": nama,
-  //     "emailController": email,
-  //     "passwordController": password,
-  //     "noController": no,
-  //   };
-  //   db.collection("users").doc(user!.uid).set(userData);
-  // }
+  postDetailsToFirestore(String email, String nama, String no, context) {
+    User? user = FirebaseAuth.instance.currentUser;
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    final userData = <String, dynamic>{
+      "namaController": nama,
+      "emailController": email,
+      "noController": no,
+    };
+    db.collection("users").doc(user!.uid).set(userData);
+  }
+
+  updateDetailsToFirestore(String email, String nama, String no, context) {
+    User? user = FirebaseAuth.instance.currentUser;
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    final userData = <String, dynamic>{
+      "namaController": nama,
+      "emailController": email,
+      "noController": no,
+    };
+    db.collection("users").doc(user!.uid).update(userData);
+    showTextMessage(context, 'Akun berhasil diupdate');
+  } 
 }

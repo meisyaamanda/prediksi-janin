@@ -259,10 +259,12 @@ class _SignUpState extends State<SignUp> {
                         backgroundColor: pinkColor,
                       ),
                       onPressed: () async {
-                        if (_formKey.currentState!.validate()) ;
+                        if (_formKey.currentState!.validate());
                         auth.SignUpProvider(
                           emailController.text,
                           passwordController.text,
+                          namaController.text,
+                          noController.text,
                           context,
                         );
                       },

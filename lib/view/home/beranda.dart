@@ -9,7 +9,6 @@ import 'package:janin/view/detail/detailtips.dart';
 import 'package:janin/view/detail/produk.dart';
 import 'package:janin/view/home/prediksi.dart';
 import 'package:janin/view/home/produk.dart';
-import 'package:janin/view/home/tips.dart';
 import 'package:janin/view/home/tips_beranda.dart';
 import 'package:janin/view/home/widget/produkcard.dart';
 import 'package:janin/view/home/widget/tipscard.dart';
@@ -35,6 +34,21 @@ class Beranda extends StatelessWidget {
                 Text(
                   'Hi, Moms',
                   style: labelText.copyWith(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                StreamBuilder<QuerySnapshot<Object?>>(
+                  stream: berandaService.streamUsers(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.active) {
+                      var data = snapshot.data!.docs;
+                      final dataUsers = data[0].data() as Map<String, dynamic>;
+                      return Text(dataUsers['namaController']);
+                    } else {
+                      return Text('Gagal');
+                    }
+                  },
                 ),
                 const SizedBox(
                   height: 20,

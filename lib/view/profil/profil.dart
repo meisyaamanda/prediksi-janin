@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:janin/provider/auth.dart';
+import 'package:janin/services/berandaservices.dart';
 import 'package:janin/theme.dart';
 import 'package:janin/view/profil/editprofil.dart';
 import 'package:janin/view/profil/tentang.dart';
@@ -14,6 +16,7 @@ class Profil extends StatefulWidget {
 }
 
 class _ProfilState extends State<Profil> {
+  BerandaService berandaService = BerandaService();
   @override
   Widget build(BuildContext context) {
     Auth auth = Provider.of<Auth>(context, listen: false);
@@ -52,56 +55,83 @@ class _ProfilState extends State<Profil> {
             const SizedBox(
               height: 10,
             ),
-            Text('Anindira'),
+            StreamBuilder<QuerySnapshot<Object?>>(
+              stream: berandaService.streamUsers(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.active) {
+                  var data = snapshot.data!.docs;
+                  final dataUsers = data[0].data() as Map<String, dynamic>;
+                  return Text(dataUsers['namaController']);
+                } else {
+                  return Text('Gagal');
+                }
+              },
+            ),
             const SizedBox(
               height: 20,
             ),
-            InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => EditProfil(),
-                  ),
-                );
-              },
-              child: Container(
-                height: 44,
-                width: 325,
-                decoration: BoxDecoration(
-                  border: Border.all(color: blackColor),
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.white,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Icon(
-                        Icons.person,
-                        color: pinkColor,
+            StreamBuilder<QuerySnapshot<Object?>>(
+                stream: berandaService.streamUsers(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.active) {
+                    var data = snapshot.data!.docs;
+                    final dataUsers = data[0].data() as Map<String, dynamic>;
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => EditProfil(
+                              email: dataUsers['emailController'],
+                              nama: dataUsers['namaController'],
+                              no: dataUsers['noController'],
+                            ),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        height: 44,
+                        width: 325,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: blackColor),
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Icon(
+                                Icons.person,
+                                color: pinkColor,
+                              ),
+                              // const SizedBox(
+                              //   width: 30,
+                              // ),
+                              Text(
+                                'Edit Profile',
+                                style: GoogleFonts.poppins(
+                                    fontSize: 14, color: blackColor),
+                              ),
+                              const SizedBox(
+                                width: 150,
+                              ),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                color: Colors.black,
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
-                      // const SizedBox(
-                      //   width: 30,
-                      // ),
-                      Text(
-                        'Edit Profile',
-                        style: GoogleFonts.poppins(
-                            fontSize: 14, color: blackColor),
-                      ),
-                      const SizedBox(
-                        width: 150,
-                      ),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.black,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+                    );
+                  } else {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                }),
             const SizedBox(
               height: 20,
             ),

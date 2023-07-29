@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
-
+import 'package:janin/provider/auth.dart';
+import 'package:provider/provider.dart';
 import '../../theme.dart';
 
 class EditProfil extends StatefulWidget {
-  const EditProfil({super.key});
+  EditProfil({
+    super.key,
+    required this.nama,
+    required this.email,
+    required this.no,
+  });
+  final String nama;
+  final String email;
+  final String no;
 
   @override
   State<EditProfil> createState() => _EditProfilState();
@@ -11,9 +20,21 @@ class EditProfil extends StatefulWidget {
 
 class _EditProfilState extends State<EditProfil> {
   final _formKey = GlobalKey<FormState>();
+  TextEditingController namaUController = TextEditingController();
+  TextEditingController noUController = TextEditingController();
+  TextEditingController emailUController = TextEditingController();
+
+  @override
+  void initState() {
+    namaUController.text = widget.nama;
+    noUController.text = widget.no;
+    emailUController.text = widget.email;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    Auth auth = Provider.of<Auth>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -41,7 +62,7 @@ class _EditProfilState extends State<EditProfil> {
             children: [
               Center(
                 child: InkWell(
-                  onTap: (){},
+                  onTap: () {},
                   child: Container(
                     height: 200,
                     width: 200,
@@ -72,6 +93,7 @@ class _EditProfilState extends State<EditProfil> {
                       height: 5,
                     ),
                     TextFormField(
+                      controller: namaUController,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
@@ -89,6 +111,7 @@ class _EditProfilState extends State<EditProfil> {
                       height: 5,
                     ),
                     TextFormField(
+                      controller: noUController,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
@@ -106,6 +129,7 @@ class _EditProfilState extends State<EditProfil> {
                       height: 5,
                     ),
                     TextFormField(
+                      controller: emailUController,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
@@ -114,20 +138,6 @@ class _EditProfilState extends State<EditProfil> {
                     ),
                     const SizedBox(
                       height: 15,
-                    ),
-                    Text(
-                      'Kata Sandi',
-                      style: labelText,
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
                     ),
                   ],
                 ),
@@ -148,7 +158,15 @@ class _EditProfilState extends State<EditProfil> {
                         ),
                         backgroundColor: pinkColor,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        auth.updateDetailsToFirestore(
+                          emailUController.text,
+                          namaUController.text,
+                          noUController.text,
+                          context,
+                        );
+                        Navigator.pop(context);
+                      },
                       child: Text(
                         'Simpan',
                         style: buttonText,
